@@ -195,46 +195,40 @@ class MedicalDomainGuard:
 import os
 
 def load_model():
-    # Try multiple possible locations
     possible_paths = [
         "./malnutrition-t5-final",
         "malnutrition-t5-final",
-        "../malnutrition-t5-final",
-        "/malnutrition-t5-final"
+        "../malnutrition-t5-final"
     ]
+    
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     
     for path in possible_paths:
         if os.path.exists(path):
             try:
-                # try low-memory load first (reduces chance of meta tensors)
-                model = T5ForConditionalGeneration.from_pretrained(path, low_cpu_mem_usage=True)
+                # Simply load directly to device - let transformers handle it
+                model = T5ForConditionalGeneration.from_pretrained(
+                    path,
+                    device_map="auto" if torch.cuda.is_available() else None,
+                    torch_dtype=torch.float32
+                )
                 tokenizer = T5Tokenizer.from_pretrained(path)
-                device = "cuda" if torch.cuda.is_available() else "cpu"
                 
-                try:
-                    # If any parameter is a meta tensor, use to_empty (PyTorch >= 2.x)
-                    has_meta = any(getattr(p, "is_meta", False) for p in model.parameters())
-                    if has_meta and hasattr(model, "to_empty"):
-                        model = model.to_empty(device)
-                    else:
-                        model = model.to(device)
-                except NotImplementedError as e:
-                    # fallback to to_empty if .to() fails with meta tensors
-                    if hasattr(model, "to_empty"):
-                        model = model.to_empty(device)
-                    else:
-                        raise
+                # Only call .to() if device_map wasn't used
+                if not torch.cuda.is_available():
+                    model = model.to(device)
                 
                 print(f"✅ Model loaded from: {path}")
                 return model, tokenizer, device
+                
             except Exception as e:
                 print(f"❌ Error loading from {path}: {e}")
+                continue
     
-    # Fallback to base model
+    # Fallback
     print("⚠️ Using base T5 model as fallback")
     model = T5ForConditionalGeneration.from_pretrained("t5-small")
     tokenizer = T5Tokenizer.from_pretrained("t5-small")
-    device = "cuda" if torch.cuda.is_available() else "cpu"
     model = model.to(device)
     return model, tokenizer, device
 #Hugging Face Spaces optimized loading
