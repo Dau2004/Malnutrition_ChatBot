@@ -14,7 +14,7 @@ A domain-specific AI chatbot specialized in severe malnutrition treatment based 
 - [Example Conversations](#example-conversations)
 - [Demo Video](#demo-video)
 - [Deployment](#deployment)
-
+## **Video Link**: [Demo Video](https://drive.google.com/drive/folders/1HG0TTkYR40nizx1KDp0Cd6Ae0vI1uJF2?usp=sharing)]
 ## 🎯 Overview
 
 This project implements an intelligent chatbot that provides medical guidance on severe malnutrition treatment following WHO (World Health Organization) guidelines. The chatbot uses a fine-tuned T5 transformer model and includes robust domain filtering to ensure safe, relevant responses.
@@ -28,7 +28,7 @@ This project implements an intelligent chatbot that provides medical guidance on
 ## 📊 Dataset
 
 ### Source
-Custom malnutrition Q&A dataset (`malnutrition_qa.jsonl`) containing 48 conversational pairs.
+Custom malnutrition Q&A dataset (`malnutrition_qa.jsonl`) containing 52 conversational pairs.
 
 ### Dataset Characteristics
 - **Format**: JSONL (JSON Lines)
@@ -160,10 +160,7 @@ Access at: `http://localhost:8501`
 ```
 Summative_ML_Technique1/
 ├── app.py                          # Streamlit interface
-├── malnutrition_chatbot.py         # Core implementation
-├── evaluation.py                   # Evaluation script
-├── hyperparameter_tuning.py        # Tuning experiments
-├── demo.py                         # CLI demo
+├── Notebook         # Core implementation                   
 ├── malnutrition_qa.jsonl           # Dataset
 ├── requirements.txt                # Dependencies
 └── README.md                       # Documentation
@@ -211,26 +208,10 @@ A 5-10 minute demo video showcasing:
 - Response time and accuracy
 - Key features and insights
 
-**Video Link**: [Insert your demo video link here]
+**Video Link**: [Demo Video](https://drive.google.com/drive/folders/1HG0TTkYR40nizx1KDp0Cd6Ae0vI1uJF2?usp=sharing)]
 
-## 🌐 Deployment
 
-### Option 1: Streamlit Community Cloud (Free)
-1. Push code to GitHub
-2. Go to share.streamlit.io
-3. Connect repository
-4. Deploy app.py
 
-### Option 2: Local Network
-```bash
-streamlit run app.py --server.address 0.0.0.0
-```
-
-### Option 3: Docker
-```bash
-docker build -t malnutrition-chatbot .
-docker run -p 8501:8501 malnutrition-chatbot
-```
 
 ## 📝 Key Insights
 
@@ -251,9 +232,9 @@ docker run -p 8501:8501 malnutrition-chatbot
 
 ## 🤝 Contributors
 
-- [Your Name]
+- Chol Daniel Deng
 - Course: Machine Learning Technique 1
-- Institution: [Your Institution]
+- Institution: African Leadership University
 
 ## 📄 License
 
