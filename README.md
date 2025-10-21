@@ -15,6 +15,8 @@ A domain-specific AI chatbot specialized in severe malnutrition treatment based 
 - [Demo Video](#demo-video)
 - [Deployment](#deployment)
 ## **Video Link**: [Demo Video](https://drive.google.com/drive/folders/1HG0TTkYR40nizx1KDp0Cd6Ae0vI1uJF2?usp=sharing)]
+## **Model Link**: [Model](https://drive.google.com/drive/folders/16ACpww0hKYLoweHjWArIs-t3wWqRKPCa?usp=drive_link)]
+
 ## 🎯 Overview
 
 This project implements an intelligent chatbot that provides medical guidance on severe malnutrition treatment following WHO (World Health Organization) guidelines. The chatbot uses a fine-tuned T5 transformer model and includes robust domain filtering to ensure safe, relevant responses.
